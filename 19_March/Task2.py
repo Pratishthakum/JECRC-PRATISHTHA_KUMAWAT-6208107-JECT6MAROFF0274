@@ -21,15 +21,15 @@ email.send_keys('abc@gmail.com')
 number=wait.until(EC.visibility_of_element_located((By.ID,'tel')))
 number.send_keys('7869012345')
 
-upload_file=wait.until(EC.invisibility_of_element_located((By.XPATH ,'//input[@multiple="multiple"]')))
+upload_file=wait.until(EC.visibility_of_element_located((By.XPATH ,'//input[@multiple="multiple"]')))
 upload_file.send_keys(r'C:\Users\Dell\Downloads\photo01.jpg')
 
 
-country_DD=wait.until(EC.visibility_of_element_located((By.NAME,'sgender')))
-dropdown=Select(country_DD)
+gender=wait.until(EC.visibility_of_element_located((By.NAME,'sgender')))
+dropdown=Select(gender)
 dropdown.select_by_value('female')
 
-YOE=wait.until(EC.visibility_of_element_located((By.XPATH,'//input[@value="above 7"]')))
+YOE=wait.until(EC.visibility_of_element_located((By.XPATH,'//input[@value="above seven"]')))
 YOE.click()
 
 Skills=wait.until(EC.visibility_of_all_elements_located((By.XPATH,'//label[@for="skills"]/following-sibling::input')))
@@ -39,7 +39,7 @@ for skill in Skills:
 
 tool=wait.until(EC.visibility_of_element_located((By.ID,'tools')))
 tools=Select(tool)
-tool.select_by_visible_text('Selenium')
+tools.select_by_visible_text('Selenium')
 
 submit=wait.until(EC.element_to_be_clickable((By.ID,'submit')))
 submit.click()
@@ -49,4 +49,4 @@ submit.click()
 
 
 
-driver.quit()
+
