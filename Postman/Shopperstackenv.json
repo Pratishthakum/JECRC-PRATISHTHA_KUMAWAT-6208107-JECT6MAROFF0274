@@ -1,0 +1,82 @@
+{
+	"id": "389ed4df-b918-41fb-9dd6-5d220f4bc395",
+	"name": "Shopperstack_env",
+	"values": [
+		{
+			"key": "BaseURL",
+			"value": "https://www.shoppersstack.com/shopping",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "shopperId",
+			"value": "385364",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "shopperEmail",
+			"value": "pratishthakumawat20@gmail.com",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "shopperpwd",
+			"value": "cherry",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "jwtToken",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmF0aXNodGhha3VtYXdhdDI0QGdtYWlsLmNvbSBTSE9QUEVSIiwiZXhwIjoxNzc1NzUxNzI1LCJpYXQiOjE3NzU3MTU3MjV9.Dqj-9ORj0TQcDlRAdJD9EKAlH43J6IYEl78pz3hyt5U",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmF0aXNodGhha3VtYXdhdDIwQGdtYWlsLmNvbSBTSE9QUEVSIiwiZXhwIjoxNzc2MDYzMjc4LCJpYXQiOjE3NzYwMjcyNzh9.v2Q_z2y5ec_dPhJB7zxycz6zhTmPy6OgAVK5dR-IoFw",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "base_url",
+			"value": "https://www.shoppersstack.com/shopping",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "addressId",
+			"value": "153386",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "productId",
+			"value": "56",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "itemId",
+			"value": "null",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "orderId",
+			"value": "73077",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "reviewId",
+			"value": 28611,
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-04-13T05:48:40.329Z",
+	"_postman_exported_using": "Postman/12.5.6"
+}
