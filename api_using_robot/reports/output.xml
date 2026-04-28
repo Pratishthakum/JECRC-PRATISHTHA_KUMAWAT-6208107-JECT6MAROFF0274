@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.13.12 on win32)" generated="2026-04-28T15:23:07.796067" rpa="false" schemaversion="5">
+<suite id="s1" name="Pet" source="C:\Users\Dell\Desktop\api_using_robot\Petstore\pet.robot">
+<test id="s1-t1" name="Add Pet" line="10">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:08.357708" level="INFO">Creating Session using : alias=petapi, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>petapi</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-04-28T15:23:08.357187" elapsed="0.000937"/>
+</kw>
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2026-04-28T15:23:08.360041" level="INFO">${payload} = {'id': 50, 'category': {'id': 50, 'name': 'googlie'}, 'name': 'doggie', 'photoUrls': ['string'], 'tags': [{'id': 50, 'name': 'string'}], 'status': 'available'}</msg>
+<var>${payload}</var>
+<arg>C:\\Users\\Dell\\Desktop\\api_using_robot\\Petstore/../data/add_pet.json</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2026-04-28T15:23:08.359099" elapsed="0.001015"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:15.505544" level="INFO">POST Request : url=https://petstore.swagger.io/v2/pet 
+ path_url=/v2/pet 
+ headers={'User-Agent': 'python-requests/2.33.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '159', 'Content-Type': 'application/json'} 
+ body=b'{"id": 50, "category": {"id": 50, "name": "googlie"}, "name": "doggie", "photoUrls": ["string"], "tags": [{"id": 50, "name": "string"}], "status": "available"}' 
+ </msg>
+<msg time="2026-04-28T15:23:15.505960" level="INFO">POST Response : url=https://petstore.swagger.io/v2/pet 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 28 Apr 2026 09:53:14 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"id":50,"category":{"id":50,"name":"googlie"},"name":"doggie","photoUrls":["string"],"tags":[{"id":50,"name":"string"}],"status":"available"} 
+ </msg>
+<msg time="2026-04-28T15:23:15.506506" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>petapi</arg>
+<arg>/pet</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-04-28T15:23:08.361029" elapsed="7.145592"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-04-28T15:23:15.510997" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-04-28T15:23:15.508125" elapsed="0.003155"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-28T15:23:15.512621" elapsed="0.002939"/>
+</kw>
+<doc>Add a new pet to the store</doc>
+<status status="PASS" start="2026-04-28T15:23:08.355236" elapsed="7.161721"/>
+</test>
+<test id="s1-t2" name="Updating existing Pet" line="18">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:15.522484" level="INFO">Creating Session using : alias=petapi, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>petapi</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-04-28T15:23:15.521631" elapsed="0.001504"/>
+</kw>
+<kw name="Load Json From File" owner="JSONLibrary">
+<msg time="2026-04-28T15:23:15.526229" level="INFO">${payload} = {'id': 50, 'category': {'id': 50, 'name': 'wooglie'}, 'name': 'doggie', 'photoUrls': ['string'], 'tags': [{'id': 50, 'name': 'string'}], 'status': 'available'}</msg>
+<var>${payload}</var>
+<arg>C:\\Users\\Dell\\Desktop\\api_using_robot\\Petstore/../data/update_pet.json</arg>
+<doc>Load JSON from file.</doc>
+<status status="PASS" start="2026-04-28T15:23:15.524461" elapsed="0.001898"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:25.472634" level="INFO">PUT Request : url=https://petstore.swagger.io/v2/pet 
+ path_url=/v2/pet 
+ headers={'User-Agent': 'python-requests/2.33.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '159', 'Content-Type': 'application/json'} 
+ body=b'{"id": 50, "category": {"id": 50, "name": "wooglie"}, "name": "doggie", "photoUrls": ["string"], "tags": [{"id": 50, "name": "string"}], "status": "available"}' 
+ </msg>
+<msg time="2026-04-28T15:23:25.472950" level="INFO">PUT Response : url=https://petstore.swagger.io/v2/pet 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 28 Apr 2026 09:53:24 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"id":50,"category":{"id":50,"name":"wooglie"},"name":"doggie","photoUrls":["string"],"tags":[{"id":50,"name":"string"}],"status":"available"} 
+ </msg>
+<msg time="2026-04-28T15:23:25.473391" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>petapi</arg>
+<arg>/pet</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-04-28T15:23:15.527748" elapsed="9.945759"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-04-28T15:23:25.477747" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-04-28T15:23:25.475074" elapsed="0.002976"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-28T15:23:25.479490" elapsed="0.003251"/>
+</kw>
+<doc>update existing pet</doc>
+<status status="PASS" start="2026-04-28T15:23:15.519840" elapsed="9.964275"/>
+</test>
+<test id="s1-t3" name="Find pet by status" line="26">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:25.489248" level="INFO">Creating Session using : alias=petapi, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>petapi</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-04-28T15:23:25.488549" elapsed="0.001252"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-28T15:23:25.493279" level="INFO">${qp} = {'status': 'available'}</msg>
+<var>${qp}</var>
+<arg>status=available</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-28T15:23:25.491203" elapsed="0.002283"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:31.603097" level="INFO">GET Request : url=https://petstore.swagger.io/v2/pet/findByStatus?status=available 
+ path_url=/v2/pet/findByStatus?status=available 
+ headers={'User-Agent': 'python-requests/2.33.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-04-28T15:23:31.604523" level="INFO">GET Response : url=https://petstore.swagger.io/v2/pet/findByStatus?status=available 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 28 Apr 2026 09:53:29 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body=[{"id":30624,"category":{"id":2,"name":"Category-28"},"name":"doggie-28-175","photoUrls":["https://example.com/pet-28.jpg"],"tags":[{"id":28,"name":"tag-28"}],"status":"available"},{"id":57362,"category":{"id":3,"name":"Category-3"},"name":"doggie-3-367","photoUrls":["https://example.com/pet-3.jpg"],"tags":[{"id":3,"name":"tag-3"}],"status":"available"},{"id":37749,"category":{"id":2,"name":"Category-48"},"name":"doggie-48-720","photoUrls":["https://example.com/pet-48.jpg"],"tags":[{"id":48,"name":"tag-48"}],"status":"available"},{"id":83661,"category":{"id":5,"name":"Category-19"},"name":"doggie-19-839","photoUrls":["https://example.com/pet-19.jpg"],"tags":[{"id":19,"name":"tag-19"}],"status":"available"},{"id":14062,"category":{"id":1,"name":"Category-8"},"name":"doggie-8-999","photoUrls":["https://example.com/pet-8.jpg"],"tags":[{"id":8,"name":"tag-8"}],"status":"available"},{"id":21042,"category":{"id":3,"name":"Category-20"},"name":"doggie-20-361","photoUrls":["https://example.com/pet-20.jpg"],"tags":[{"id":20,"name":"tag-20"}],"status":"available"},{"id":65428,"category":{"id":3,"name":"Category-44"},"name":"doggie-44-601","photoUrls":["https://example.com/pet-44.jpg"],"tags":[{"id":44,"name":"tag-44"}],"status":"available"},{"id":24425,"category":{"id":5,"name":"Category-31"},"name":"doggie-31-142","photoUrls":["https://example.com/pet-31.jpg"],"tags":[{"id":31,"name":"tag-31"}],"status":"available"},{"id":28110,"category":{"id":1,"name":"Category-27"},"name":"doggie-27-348","photoUrls":["https://example.com/pet-27.jpg"],"tags":[{"id":27,"name":"tag-27"}],"status":"available"},{"id":80664,"category":{"id":3,"name":"Category-37"},"name":"doggie-37-156","photoUrls":["https://example.com/pet-37.jpg"],"tags":[{"id":37,"name":"tag-37"}],"status":"available"},{"id":62819,"category":{"id":1,"name":"Category-12"},"name":"doggie-12-561","photoUrls":["https://example.com/pet-12.jpg"],"tags":[{"id":12,"name":"tag-12"}],"status":"available"},{"id":75757,"category":{"id":5,"name":"Category-19"},"name":"doggie-19-138","photoUrls":["https://example.com/pet-19.jpg"],"tags":[{"id":19,"name":"tag-19"}],"status":"available"},{"id":34540,"category":{"id":1,"name":"Category-9"},"name":"doggie-9-2","photoUrls":["https://example.com/pet-9.jpg"],"tags":[{"id":9,"name":"tag-9"}],"status":"available"},{"id":91931,"category":{"id":4,"name":"Category-18"},"name":"doggie-18-674","photoUrls":["https://example.com/pet-18.jpg"],"tags":[{"id":18,"name":"tag-18"}],"status":"available"},{"id":85058,"category":{"id":3,"name":"Category-34"},"name":"doggie-34-571","photoUrls":["https://example.com/pet-34.jpg"],"tags":[{"id":34,"name":"tag-34"}],"status":"available"},{"id":70920,"category":{"id":4,"name":"Category-2"},"name":"doggie-2-811","photoUrls":["https://example.com/pet-2.jpg"],"tags":[{"id":2,"name":"tag-2"}],"status":"available"},{"id":80306,"category":{"id":2,"name":"Category-14"},"name":"doggie-14-942","photoUrls":["https://example.com/pet-14.jpg"],"tags":[{"id":14,"name":"tag-14"}],"status":"available"},{"id":48151,"category":{"id":1,"name":"Category-43"},"name":"doggie-43-661","photoUrls":["https://example.com/pet-43.jpg"],"tags":[{"id":43,"name":"tag-43"}],"status":"available"},{"id":39277,"category":{"id":5,"name":"Category-49"},"name":"doggie-49-449","photoUrls":["https://example.com/pet-49.jpg"],"tags":[{"id":49,"name":"tag-49"}],"status":"available"},{"id":76695,"category":{"id":3,"name":"Category-38"},"name":"doggie-38-288","photoUrls":["https://example.com/pet-38.jpg"],"tags":[{"id":38,"name":"tag-38"}],"status":"available"},{"id":90072,"category":{"id":2,"name":"Category-42"},"name":"doggie-42-591","photoUrls":["https://example.com/pet-42.jpg"],"tags":[{"id":42,"name":"tag-42"}],"status":"available"},{"id":79084,"category":{"id":2,"name":"Category-46"},"name":"doggie-46-396","photoUrls":["https://example.com/pet-46.jpg"],"tags":[{"id":46,"name":"tag-46"}],"status":"available"},{"id":84196,"category":{"id":1,"name":"Category-4"},"name":"doggie-4-639","photoUrls":["https://example.com/pet-4.jpg"],"tags":[{"id":4,"name":"tag-4"}],"status":"available"},{"id":92085,"category":{"id":1,"name":"Category-28"},"name":"doggie-28-186","photoUrls":["https://example.com/pet-28.jpg"],"tags":[{"id":28,"name":"tag-28"}],"status":"available"},{"id":84249,"category":{"id":3,"name":"Category-6"},"name":"doggie-6-852","photoUrls":["https://example.com/pet-6.jpg"],"tags":[{"id":6,"name":"tag-6"}],"status":"available"},{"id":97865,"category":{"id":3,"name":"Category-7"},"name":"doggie-7-584","photoUrls":["https://example.com/pet-7.jpg"],"tags":[{"id":7,"name":"tag-7"}],"status":"available"},{"id":65222,"category":{"id":2,"name":"Category-12"},"name":"doggie-12-734","photoUrls":["https://example.com/pet-12.jpg"],"tags":[{"id":12,"name":"tag-12"}],"status":"available"},{"id":12700,"category":{"id":2,"name":"Category-43"},"name":"doggie-43-836","photoUrls":["https://example.com/pet-43.jpg"],"tags":[{"id":43,"name":"tag-43"}],"status":"available"},{"id":92172,"category":{"id":3,"name":"Category-11"},"name":"doggie-11-710","photoUrls":["https://example.com/pet-11.jpg"],"tags":[{"id":11,"name":"tag-11"}],"status":"available"},{"id":22932,"category":{"id":2,"name":"Category-10"},"name":"doggie-10-259","photoUrls":["https://example.com/pet-10.jpg"],"tags":[{"id":10,"name":"tag-10"}],"status":"available"},{"id":71037,"category":{"id":2,"name":"Category-8"},"name":"doggie-8-223","photoUrls":["https://example.com/pet-8.jpg"],"tags":[{"id":8,"name":"tag-8"}],"status":"available"},{"id":36633,"category":{"id":5,"name":"Category-4"},"name":"doggie-4-156","photoUrls":["https://example.com/pet-4.jpg"],"tags":[{"id":4,"name":"tag-4"}],"status":"available"},{"id":79130,"category":{"id":2,"name":"Category-2"},"name":"doggie-2-815","photoUrls":["https://example.com/pet-2.jpg"],"tags":[{"id":2,"name":"tag-2"}],"status":"available"},{"id":68327,"category":{"id":1,"name":"Category-29"},"name":"doggie-29-452","photoUrls":["https://example.com/pet-29.jpg"],"tags":[{"id":29,"name":"tag-29"}],"status":"available"},{"id":69920,"category":{"id":2,"name":"Category-26"},"name":"doggie-26-782","photoUrls":["https://example.com/pet-26.jpg"],"tags":[{"id":26,"name":"tag-26"}],"status":"available"},{"id":53734,"category":{"id":1,"name":"Category-44"},"name":"doggie-44-112","photoUrls":["https://example.com/pet-44.jpg"],"tags":[{"id":44,"name":"tag-44"}],"status":"available"},{"id":86910,"category":{"id":5,"name":"Category-19"},"name":"doggie-19-975","photoUrls":["https://example.com/pet-19.jpg"],"tags":[{"id":19,"name":"tag-19"}],"status":"available"},{"id":62164,"category":{"id":4,"name":"Category-46"},"name":"doggie-46-871","photoUrls":["https://example.com/pet-46.jpg"],"tags":[{"id":46,"name":"tag-46"}],"status":"available"},{"id":63764,"category":{"id":4,"name":"Category-20"},"name":"doggie-20-401","photoUrls":["https://example.com/pet-20.jpg"],"tags":[{"id":20,"name":"tag-20"}],"status":"available"},{"id":34643,"category":{"id":1,"name":"Category-40"},"name":"doggie-40-780","photoUrls":["https://example.com/pet-40.jpg"],"tags":[{"id":40,"name":"tag-40"}],"status":"available"},{"id":47936,"category":{"id":4,"name":"Category-35"},"name":"doggie-35-884","photoUrls":["https://example.com/pet-35.jpg"],"tags":[{"id":35,"name":"tag-35"}],"status":"available"},{"id":59360,"category":{"id":5,"name":"Category-7"},"name":"doggie-7-104","photoUrls":["https://example.com/pet-7.jpg"],"tags":[{"id":7,"name":"tag-7"}],"status":"available"},{"id":58495,"category":{"id":1,"name":"Category-33"},"name":"doggie-33-568","photoUrls":["https://example.com/pet-33.jpg"],"tags":[{"id":33,"name":"tag-33"}],"status":"available"},{"id":10408,"category":{"id":1,"name":"Category-28"},"name":"doggie-28-681","photoUrls":["https://example.com/pet-28.jpg"],"tags":[{"id":28,"name":"tag-28"}],"status":"available"},{"id":95641,"category":{"id":3,"name":"Category-24"},"name":"doggie-24-893","photoUrls":["https://example.com/pet-24.jpg"],"tags":[{"id":24,"name":"tag-24"}],"status":"available"},{"id":83507,"category":{"id":5,"name":"Category-23"},"name":"doggie-23-131","photoUrls":["https://example.com/pet-23.jpg"],"tags":[{"id":23,"name":"tag-23"}],"status":"available"},{"id":26551,"category":{"id":2,"name":"Category-37"},"name":"doggie-37-741","photoUrls":["https://example.com/pet-37.jpg"],"tags":[{"id":37,"name":"tag-37"}],"status":"available"},{"id":63814,"category":{"id":5,"name":"Category-12"},"name":"doggie-12-936","photoUrls":["https://example.com/pet-12.jpg"],"tags":[{"id":12,"name":"tag-12"}],"status":"available"},{"id":61626,"category":{"id":1,"name":"Category-39"},"name":"doggie-39-558","photoUrls":["https://example.com/pet-39.jpg"],"tags":[{"id":39,"name":"tag-39"}],"status":"available"},{"id":30461,"category":{"id":3,"name":"Category-38"},"name":"doggie-38-731","photoUrls":["https://example.com/pet-38.jpg"],"tags":[{"id":38,"name":"tag-38"}],"status":"available"},{"id":13048,"category":{"id":2,"name":"Category-5"},"name":"doggie-5-736","photoUrls":["https://example.com/pet-5.jpg"],"tags":[{"id":5,"name":"tag-5"}],"status":"available"},{"id":87417,"category":{"id":2,"name":"Category-28"},"name":"doggie-28-375","photoUrls":["https://example.com/pet-28.jpg"],"tags":[{"id":28,"name":"tag-28"}],"status":"available"},{"id":11458,"category":{"id":1,"name":"Category-32"},"name":"doggie-32-675","photoUrls":["https://example.com/pet-32.jpg"],"tags":[{"id":32,"name":"tag-32"}],"status":"available"},{"id":85778,"category":{"id":3,"name":"Category-3"},"name":"doggie-3-593","photoUrls":["https://example.com/pet-3.jpg"],"tags":[{"id":3,"name":"tag-3"}],"status":"available"},{"id":80043,"category":{"id":5,"name":"Category-19"},"name":"doggie-19-135","photoUrls":["https://example.com/pet-19.jpg"],"tags":[{"id":19,"name":"tag-19"}],"status":"available"},{"id":30785,"category":{"id":5,"name":"Category-46"},"name":"doggie-46-680","photoUrls":["https://example.com/pet-46.jpg"],"tags":[{"id":46,"name":"tag-46"}],"status"... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2026-04-28T15:23:31.605477" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>petapi</arg>
+<arg>/pet/findByStatus</arg>
+<arg>params=${qp}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-04-28T15:23:25.494854" elapsed="6.110757"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-04-28T15:23:31.609317" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-04-28T15:23:31.607161" elapsed="0.002414"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-28T15:23:31.611009" elapsed="0.035493"/>
+</kw>
+<doc>find pet by status</doc>
+<status status="PASS" start="2026-04-28T15:23:25.487137" elapsed="6.160702"/>
+</test>
+<test id="s1-t4" name="Find pet by id" line="37">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:31.652873" level="INFO">Creating Session using : alias=petapi, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>petapi</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-04-28T15:23:31.652168" elapsed="0.001231"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:38.239566" level="INFO">GET Request : url=https://petstore.swagger.io/v2/pet/50 
+ path_url=/v2/pet/50 
+ headers={'User-Agent': 'python-requests/2.33.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-04-28T15:23:38.239867" level="INFO">GET Response : url=https://petstore.swagger.io/v2/pet/50 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 28 Apr 2026 09:53:37 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"id":50,"category":{"id":50,"name":"wooglie"},"name":"doggie","photoUrls":["string"],"tags":[{"id":50,"name":"string"}],"status":"available"} 
+ </msg>
+<msg time="2026-04-28T15:23:38.240314" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>petapi</arg>
+<arg>/pet/50</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-04-28T15:23:31.654746" elapsed="6.585688"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-04-28T15:23:38.244039" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-04-28T15:23:38.241976" elapsed="0.002302"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-04-28T15:23:38.245679" elapsed="0.002445"/>
+</kw>
+<doc>find pet by id</doc>
+<status status="PASS" start="2026-04-28T15:23:31.650776" elapsed="6.598751"/>
+</test>
+<test id="s1-t5" name="Upload an image" line="46">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:38.254937" level="INFO">Creating Session using : alias=petapi, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>petapi</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-04-28T15:23:38.254226" elapsed="0.001203"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-28T15:23:38.258106" level="INFO">${form_data} = {'additionalMetadata': "googlie's img"}</msg>
+<var>${form_data}</var>
+<arg>additionalMetadata=googlie's img</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-28T15:23:38.256847" elapsed="0.001383"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-04-28T15:23:38.260708" level="INFO">${file_path} = C:\Users\Dell\Desktop\api_using_robot\Petstore/../Data/cat_img.jpg</msg>
+<var>${file_path}</var>
+<arg>C:\\Users\\Dell\\Desktop\\api_using_robot\\Petstore/../Data/cat_img.jpg</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-04-28T15:23:38.259596" elapsed="0.001306"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-04-28T15:23:38.264559" level="INFO">${file} = {'file': &lt;_io.BufferedReader name='C:\\Users\\Dell\\Desktop\\api_using_robot\\Petstore/../Data/cat_img.jpg'&gt;}</msg>
+<var>${file}</var>
+<arg>{'file': open(r'${file_path}','rb')}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-04-28T15:23:38.262320" elapsed="0.002384"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:48.241269" level="INFO">POST Request : url=https://petstore.swagger.io/v2/pet/50/uploadImage 
+ path_url=/v2/pet/50/uploadImage 
+ headers={'User-Agent': 'python-requests/2.33.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '3908', 'Content-Type': 'multipart/form-data; boundary=a5521528e2315dae3f633479ce59b189'} 
+ body=b'--a5521528e2315dae3f633479ce59b189\r\nContent-Disposition: form-data; name="additionalMetadata"\r\n\r\ngooglie\'s img\r\n--a5521528e2315dae3f633479ce59b189\r\nContent-Disposition: form-data; name="file"; filename="cat_img.jpg"\r\n\r\n\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x00\x00\x01\x00\x01\x00\x00\xff\xdb\x00\x84\x00\t\x06\x07\x12\x12\x10\x10\x0f\x10\x10\x10\x10\x10\x0f\x10\x0f\x0f\x0f\x0f\x10\x0f\x0f\x0f\x10\x0f\x10\x15\x12\x16\x16\x15\x11\x15\x15\x18\x1d( \x18\x1a%\x1b\x15\x15!1!%)+...\x17\x1f383,7(-.+\x01\n\n\n\x0e\r\x0e\x1a\x10\x10\x18-%\x1e\x1d-----------+------+---------------------7----7-7--\xff\xc0\x00\x11\x08\x00\x8c\x01h\x03\x01"\x00\x02\x11\x01\x03\x11\x01\xff\xc4\x00\x1b\x00\x00\x02\x03\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\x05\x06\x07\xff\xc4\x009\x10\x00\x02\x01\x02\x04\x03\x06\x03\x06\x06\x02\x03\x00\x00\x00\x00\x00\x01\x02\x03\x11\x04\x12!1\x05AQ\x06\x13aq\x81\x91"2\xc1\x14#R\xa1\xb1\xd1Bbr\xc2\xe1\xf0\x073$S\x92\xff\xc4\x00\x18\x01\x01\x01\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x03\x04\xff\xc4\x00\x1f\x11\x01\x01\x00\x02\x02\x03\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x01\x02\x11!1\x03\x12AQ2a\xff\xda\x00\x0c\x03\x01\x00\x02\x11\x03\x11\x00?\x00\xfa\xf5I\x19\xe7"U$e\xa93L\n\x923T\xa8\x15*\x19*L\x95S\x9dS4\xabjJ0lo\rr**\xbfBK\x12\xc9*\x16\'\xddx\x13\x91Z\xc4\xb0x\xa6MQ\x1a\xc3\x8d\xd3\x85_hf\x8c\x1dG\x99\\K\x0e[\x87\xa5i"\xf2,\xe3?"\xf3G\x02G\xa0\xe2\xff\x00\xf5\xfb\x1e}\x93.\xccT\xcd\x19*\xc4\xd93=Db\xb7\x18]\xe2\xef\x16\xd3\xea\x9d\x99\xd2\xc0v\x9e\xad;F\xa2\xef#\xd7i/\xdc\xc3R&amp;Z\x91$\xb6t\xd6\xa5\xed\xef\xb8\x7f\x17\xa3Y|\x13Y\xb9\xc1\xe9%\xe8mh\xf9T\xe2\xd3\xbam5\xcd;4u8\x7fj\xabQ\xb2\x9f\xde\xc3\xa4\xb4\x9a\xf2|\xfdN\x93\xc9\xfa\xe7\x97\x8f\xf1\xf4\x01\x1c\xbe\x15\xda\x1c&gt;#H\xcf,\xff\x00\xf5\xcf\xe1\x97\xa7_C\xaa\xd1\xd6W-h\x84\xc6&amp;\x11\x16E\x92dY\x15\x16E\x92d\x19\x16"\xc8L\x9b*\x91\x15\x06l\xe1\x7f3\xf213\xa1\xc2\xa3\xf3?!;+\xa0!\x88\xe8\xc1\x0c@\x03\x01\x0c\xa0\x1d\x840\x85\x942\x8c`D`\x00!\x88a\x19\xaa\xcc\xc5Vf\xb9+\x89A\x18u\xdb\x9a\xe3&amp;\xf6.\x86\x19s7d\x07L\x9a6\xcf\n(\x9a\xa2\\\xa0MD&amp;\xd9\xbb\x91\xaaK\xa1\xab!,\x83K\xb6UD}\xd1\xa6\xc2\xca\x05\x1d\xd18R-\xb1$\x80\xe7qu\xf7l\xf3\xac\xf4\xbcW\xe4\x97\x93&lt;\xc9\x8c\x9a\xc5\\\xcaf]2\x8a\x86\x1b\x8c\xf3Fj\x88\xd334\xc8\xdb=De\xab\x13]B\xbe\xed\xb7e\xbb2\xae]jgO\x85\xf6\xbb\x13\x87\xf8d\xfb\xfak\xf8j7\x99yO\x7f{\x9ak\xf0\x89%\xaa\xea\xefm\x1a\xd3\xf7F*\xbc\x06\xac\xa2\xdeIrI\xec\xb5\xd9\xf9\x1b\xc7\xda9\xe5\xebc\xdb\xf6{\xb5\xd8lc\xc9\t:u\x97\xcdB\xaa\xcb?8\xbd\xa6\xbc\x9f\xb1\xdeh\xf9un\xc1W\xca\xda\x8f\xde\xb5\x14\x9a\xf5w\xf3_\xad\x8fa\xc1\xf0\xd8\xea0\xa7\t\xfd\xeaZIU\x9ei\xa5\xca\xd3\xdd\xbf;\x9d\xdc+\xbc\xc8\xb3%\x0e)NU%E\xb7\n\xd0\xb6jsV\xbd\xff\x00\x0c\xb6\x97\xa35\xc9\x01\x06D\x1b#r(eR,er"\xabgW\x86/\x82\xfd[9L\xec`W\xdd\xc7\xdc\xb8\xf6V\x80\x006\xca,\x00\x02\x00@\x08\xa1\x8cC\x08\x06!\x80\x98\x00\x00\x98\x0c\x023*cP\x08\xbb\x96\\\xcbh\xa4IB\xe0K5\x80#L\x96D$\xc7v\x04\xaeFCQ%\x14\x15\x06\t\x960\x8a\n\x81$\x86\xe2\t\x10`\xe2\x0b\xe1\x97\x93&lt;\xbbG\xab\xc6\xaf\x85\xf9\x1eZG&lt;\x9a\xc5D\xd1D\xd1\xa2e\x132\xe9\x19\xaa#4\xcd5\x0c\xf3FZ,.\x0euf\xa1M]\xcb\xd9\x1e\x8b\x85vjVq\xabd\xdbVq\xa9\x16\xd2\xf4m3Gfp\xaa1\x95d\xe2\xdc\x96^i\xef\x1b\xef\xe4t1\x12\x96\xf1\xdb\x9ah\xbf\xcd\xe8\x98\xdc\xe7m\x94x\\#\x1c\xaf__\xdc\xd5\x0c4\x14l\x92\xb7\x91\xca\xc3\xf1\x1dTd\xf5[&gt;\xa6\xef\xb5\x1d\xa6R\xbc\xf9aq\xbc\xae\xcbm\xcb%\x88\x8a\xe5~\xac\xe7\xba\xac\xa6\xadt\x93m]\x97\xd9=P\xe2\x8b\x0f(\xb9\xd6\xa6\xa4\xae\xb2\xc3l\xedky&gt;\x87\x1b\x13\xc7\xe6\xa5\x08\xc2*y\xdb\x8a\xa7w\x18\xc6*-\xddY&gt;j*\xef\xab98\xae,\xe797v\xa2\xda\x8cRM(\xaez\xed\xb3w8\xdcg\x8bI\xc5\xc6\x0b,\x9e\x9a&lt;\xd3\xb7\x8bZF\xfd78\xdc\xf9z\xa7\x8aLyz\x9e\x15\xdaz\x18\x86\xa3\x19\xe4\xa9\xb7uR\xd1\x93}"\xf6\x97\xa3;\x11\x99\xf0\x9c]\xf6q~\xa9\x9d^\r\xdb,V\x19\xa8\xcd\xfd\xa2\x97(T\x93\xcd\x15\xfc\xb55~\x8e\xeb\xc8\x93\xc9\xfa\x99x\x7f\x1feL\x8c\x91\xc5\xec\xe7h\xe8\xe3#\'K:\x94\x14{\xcas\x8d\x9co{j\xb4kG\xb3;GIv\xe1e\x9d\xabh\xed\xd0\x8d\xa3\x15\xd1#\x8c\x96\xab\xcc\xee#X\xb3L@\x06\xd0\x841\x04\x03\x10\xca\x18\xc40\x80b\x18\x08\x01\x80\x00\x00\x04g\x8b,\xb1C\x9b\xe4\x8b"\x9b\xdd\x98mb%\x91\x11\xd1\x10\x8c\xef\xb2(\xd1qA\x95)\xbe\x85\x90~\x03k\xa5\xa0\xd9\x08\xb2M\xd8\x9bP\x994A1\xe6 \x91\x17\xe0;\x0e(\x0cX\xb5\xa3&lt;\xb5M\xdf\x9b=n3fy,F\xef\xcd\x99\xc9\xacY\xe6QQ\x96T\x99\x96\xa5C\x9d\xae\x92!1a\xb0\xeesQ\x8a\x93m\xff\x00\x0c\\\x9f\xb2*\x95S\xd4vS\x84)Z\xb5G+-T5\x8a~o\x9a\xf0&amp;3ur\xba\x8e\xff\x00\x0f\xc2\xe4\xa2\xa2\xeft\xadg\x97\xf4M\xfe\xa72\xbd\x16\xf5\xbb\x92}\x1aMz\x1d\x8cL\xb9$\x92ZYhs\xe7\xcf\xfdGl\xa6\xdc\xf0\xca\xc6zxT\xad.f\x9b\x94\xdf\xdc\x9c\'}\xcc\xc5\xb6\xde\xd2\x93\xfc\xca*-\xd3\xd9\x97\xb5\xa33V\xda\xe1\x1c,o\x0c\x8f\xf0\xc2)^\xedm\x9d\xf2\xbb\xfc+Gnv\xf7\xe2b\xf0t\xe8\xc6O\xe7\xa9=\x9d\xbe\x18\xdf\x9f\x8b=\x16-\xbf\x1b\xf9\xfe\xac\xe7\xe20\x99\x95\xe5vf\xc7Lr\xaf\x9fc\xa8\xdd\xb5\x9a\xfe\xb68\xd5(\xd9\xb8\xcbU{\xaeg\xb6\xe2\xbc1$\xdaV{\xf2\xb7\xf8&lt;\x95Y]\xb4\xf7\\\xf9\x1c\xac\xd3\xb67oo\xff\x00\x16\xd1\xb4q3\xeb*0\xda\xdf*\x9b\xfe\xe3\xde\xa3\xc7\x7f\xc6\xf4\xed\x86\xab/\xc5]\xdb\xc9S\x87\xd5\xb3\xd7\xa6v\xc3\xa7\x9b\xc9\xfdU\x94U\xe5\x15\xe2\x8e\xd1\xc7\xc1+\xd4\x8f\xab\xfc\x8e\xc1\xd7\x17*\x00\x04i\x92\x00\x00\x01\x88e\x0c\x00\x02\x18\xc40\x13\x00\x00\x10\xc42\xa2\x88\xa2I\x15F\xa5\xf7d\xd3\xb9\xcd\xb4\xdbI\n5\x92\xd2\xc2Q\xb9+\xa0\'\x06X\xc8\xd3\xfc\x898\xeaU\xa3/\x88\x95;n\xc20\xf1\x1c\xe1~fU\t\xd5KD\x10\x96\x9a\x8e4m\xe2WV\xfd\x00\x96\xbdK"\xca\xe3\x07n\x82\xcdd\x02\xad\xaag\x94\xc6\xd0\x96i[k\x9e\x9eJ\xfb\xb2\x8a\xb8h\x92\xcd\xac\xbax\xf7A\xbd\xca\xa5\x85\xd4\xef\xe2($\xf41&lt;6\xb79z\xba\xcc\x9c\xa9a\xd2\xd8\xf7}\x9f\xa2\xe3J\xef-\xdaZE%o3\xca\xca\t;\x9e\xcf\x85\xd4\x8b\xa5\x15\x1b|\xb7\xb2\xe4\x8d\xf8\xe3\x1eK\xb5u\xa5\xa9S\x89ee\xa9[F\xab1\x9f\xba\xd4*\xc3M\x16\xdf\x91\x8f\x8c\xe1e8^\x9f\xfd\x90\x92\x9cSvS\xb6\xf1\xf5W\xf5\xb1\xf3\xde\x11\xc0ka\xab\xe2+S\x8dg:\x93R\x8b\x9c\\\x15\x08fnNR\xd7&lt;\xac\xe5\xb5\xef\xf9\x96Igk\xce\xe6\x9fOL\xa6\xbc~\x1b\xb6\x94R\xbc\xa4\xdaI%\xcd\xbeHQ\xc4^7\xea\xae\xbdN\x1f\x1e\xa9\x88\xaa\xe1N\x84 \xe0\xa3\'8Tn\nod\xb3Y\xedv\xedn\x86\'|\xae\xaf\xc5\x98n1\x84\xad\'\n8\x8aU\xa5\x17\x95\xf7m\xd4W\xb5\xfed\xad\xb5\xf9\x97\xd7\x8a&lt;\xff\x00b\xfb%\xf6IJ\xa4\x94c{\xe4\x84d\xe7f\xf9\xb6\xfc\x15\x92G\xa4\xc6\xec\xf5-\xd7\xc1\xe58\xcdM\\l\xd5\xf9\xd94xlu\x0c\xb5\x1b\xb2\xb3\xe6\xafc\xd9q%\x9a\xe9\xe8\xd3\xddi\xa9\xc3\xc4AIZZ&gt;R\xb6\xe7,\xb9w\xc2\xe9\xec{\x05N\xd8(?\xc5R\xab\xf6\x96_\xed=\x19\xca\xec\xad\x0c\x98:\x11\xfeY?\xfe\xa7)}N\xab7\x8fN\x19wZxj\xf8\xfc\xa2\xfe\x87T\xe6\xf0\xa5\xac\x9f\x82_\xef\xb1\xd2:\xe3\xd3\x9d\xec\x00\x01\xa6H\x00\x00\x01\x00\x141\x89\x0c\x061\x0c!\x00\x00\x00\x08\n3S\xa6\xb9\x16Z\xc5T\xaa\xf3E\x8a\xad\xf9\x1c\xdb,\xd7\xf0E\xbd\xda+\x95T\x89w\xba_\x90\x16N\xb6U\xa1J\xaf}\xc9\xe4OVW*7\xd8\x94]\x19!\xa9&gt;E\x1d\xdbVE\xad\xb4\x86\xd5\x7fye\xa9\x072\xbc\xc9\x91U\x1f@4NZx\x94\xa84\xae7\\;\xd2\x88\xa8ivQR\xfd\x0b+b,\x14jivDs^\x16Rwb\xa9\x87\xb2:\xf9\xd1\x97\x1b$\xb6&amp;\xa3[pja\xee\xde\x87\x7f\xb3t\x9a\x83\xbe\xdb.\xa6\x05v\xb6\xb1\xd2\xe15\x1e\xab\x90\xc7\xb3+\xc3Exjg\x94M\xf5V\x86J\x88\xb4\x8c\xee%ui/r\xe92\xb9I\x18W+\x11\x8b\x8d)e\x92\x92Ro#\xcb\xf0\xbd\x1b\xb6m\x96\xcf{\x16a\x1ee\x9f+JZ\xc6\xfb\xb5\xd6\xc5\xbcB\x83\xa9\x17\x0b+;^\xea\xe9\xd9\xdcY\xa4\x95\x9aN\xdd6\r\xddz\xff\x00\xabt|\xac\xfa\x18\xb1\xb8t\xd3\xd0\xb2\xadIx/B\x89\xe2\x1f0\xcb\xc9\xf1*\x19[\xe8q1\xce\xcbM\x9d\xefm\xd1\xeax\xc5,\xdbs\xd7\xd7O\xf0y\x9cT,\x9a{4\xd7\xf99\xd8\xeb\x8d}\x07\x83S\xcb\x86\xc3\xc7\xa5\x1aW\xf3\xc8\xaej\x90\xe8\xc3,c\x1f\xc3\x18\xc7\xd9XR:G\x1a\xe8p\xa8\xfc2\x7f\xcdo\xc8\xdcd\xe1\xab\xe0\xf3m\xfd&gt;\x86\xb3\xac\xe9\xce\xf6\x00b*\x10\x00\x8a\x01\x88`1\x88`1\x88a\x08\x00\x00\x00C\x08\xe7\xc5-\x8b\x14\xad\xb2*\xa5+\xed\x7f\x1d\rIr9\xba!B\x17\xd7\xc4\xbeIlC5\xba$SR\xbe\xa1W\xca\tkqw\xf6\xe4A\xc2\xfa\xbb\xe8;\xad,\x06\xaaZ\xea\xc5R7\xd0M\xb2\xbd[\xd4\x04\xa8\xc5ir}\xd6\x9b\x8e1\x8e\xc4\xea4\x05\x12I\x04\xac\x85\x95\xb7w\xb1\x1c\x96wn\xe0&lt;\xa9\x93\x8c\x11\x18\xc9\xbb\xf4$\xa1\xe2\x05U\xa3v\x91\n\xd4\xb2\xbd\xcd\x11\xa5\xce\xe5U\xa2\x96\xac\x0cUg\x7f\x85"\xda\x15rI\'\xcc\xb7\x0e\x94\x9d\xd2\'S\n\xafq\xa3mN\xa5\xca\xea\xa2\x8az;\x07{\xab\xe9\xc8\xa8$\x8a\xa6\x87R\xba\xd4\xcd\xf6\x9d]\xfd&lt;\x8cX\xd4\xab%\x12\x16/KD\xf6+\x9cF\x97l\x95\xccu\x96\x9f\x99\xba\xaa1\xd7"\xb98\x88\xe8\xd7\'\xb7\x81\xc2\xc4\xe1\xb3N\x11\xfcS\x82\xf7\x92V=\x1dx\xe8\xceU(\xde\xbd\x1bs\xabM\xb5\xe5$\xdf\xe8f\xb7+\xd8\xb2\x12&amp;\xc8H\xdb\x9b\xad\x83V\x84|\xaf\xef\xa9y]%h\xa5\xd1/\xd0\xb0\xea\xe6b\x00\x08@\x00P\x00\x00\x0cb\x18\x0c\x040\x80\x00\x00C\x10\xc0\xcc\xbd\x99\x17Qm}Jd\xb5\xbb\xbf\xec]M%\xbaM\xbeg6\xd1t\xae\xfecDi\xa5\xbd\x8a\xbb\xd8\xf2^\xa2U\x93yW\xab\n\xb6U9"q\x9a\xe8P\xe7\x18\xad\xee\xf9jQN\xb3\xbbm?\xa0\xd9\xa6\xf4\xdb\xd8\x92\x8d\x8a!=\x17&amp;\xc1\xa7\xad\xdf\x98\x13\x95e{\x0f&gt;m\xb4(\xa1Q]\xf4\\\xcb\xa5;\xabE\xad@\xa3\x14\xf4Vd(\xae\xb2\x15Z\x1de\xa1,-5\xad\xf6\xe4\xf9\xb2}U\xf56\xb2~B\xa5J\xca\xed\x97MA$\xdf\xa1\\\xaa\xe9\xb6\x85D]ml\xb5!*.O]\x8a\xddu\xca/\xce\xc4\xe0\xdb\xd6\xee\xc3f\x9ah\xc5GDW^W{\xd9\x10\x9dd\x95\xdf\xa1W{\x9b\xf8~\x11\xb0\xb1\r\xdbC\x05lfV\x96\xad\xdc\xe9\xd4\x9a\xb2\xe8`\xc4\xce\x17\xd5jJ\xb1J\xae\xdb\xb0\x9cS\x9co\xb2\xddu\xf0,\x86V\xfe\x125c\xe8\xd6\xc4T\xb1\x98\x8d\x1a[\xda\xca\xdc\xbc\x11\xb7\x0b\x07\xdd\xc6\xfb\xd8\xe5\xc67i-[\xdd\x9d\xaa\x9f\x0c\x12\xe8\x8b\x12\xb1\xd7H\xc3Z\x02\xaf]\xb9\xa5\xae\xaf[\x1bk\xd3\xb2%W\x12\xbcL\x98\x1a_\xf9\x10\xe9y?\x15\xf0\xb3\xa5\x89F~\x1c\xbe\xfb\xca2\x7fO\xa9\x96\x9d\x86F\xd7iuv\x1b%A^q\xfe\xa4i\x87a\x0cHgW0\x00\x00 \x00(\x06!\x80\x0cC\x01\x80!\x84 \x00\x011\x88`si\xc6W\xdd\xb7\xe2Y);\xbb\xad:\xdfqS\x9b+\xa8\xaf$\xdd\xfe\x876\xd2Qr\xdbK\xed\xe4JT\x9d\xad{&gt;l\x8b\x9bV\xb77f]\x19\xbf;;\x11Y\xbe\xc3\xe7\xaf\x8f#ByU\x92o\xf3\x12\x93\xbc\x9d\xde\x84\xe8\xcd\xea4"\xf11_\xd5\xd0\xa5b\\\xae]R\x84^\xbc\xcbaI%\xb0\xe5xU\ny\xa3e\xa3{\x82\xa5\x95i\xb9\xae\x94tL\x94\x1f\xea4\x9bsjK3Q\xca\xd7SE\n6\xfd\x8dv\xe7az!\xa3j&amp;\xaf\xab{l\x8a1u\xb2B\xf1\xd5\xf34\xe2U\xd2\xf33\xba\t&gt;~\xe2\xacWJ\xac\xdcu\x8d\xaf\xb1,\xefm4\xdd\x9a\xb9\x14\xca:\x84U*\x8aN\xd6\xd0\x9b\x85\xd2KB\xec\xaa\xd7\xb1M\xc0\xa7\x17\x99\xc7\xe1\xb6\x87*Tf\xde\xb6\xf7:5\xe6\xd2v\xe6r)\xd5\x95\xde\xafs9V\xb1l\xc3a\xe5\x16\xf5\xb3~\xba\x0b\x13\x85n\xf7\x99\xa5\xe9\x95/~f\x88\xd1Yz\x96D\xdb\x1f\x0f\xa4\xa3iJZ\x9d\x0e#UeO\x95\x8c]\xc2r\xb6\xa9tZ\x0f\x13\xac,\xf6E\xea\x1d\xb9\x98Zr\xad]F\x9e\xd1\xd6r{%\xfb\x9d\x8cv\x9a-K\xb8U%\n+*\xb3\x9e\xb2|\xdb1\xe3\x18\xd6\xa1\xbd\xd7+\x19;#7\x03\x9ej\xb5?\x96\t{\xbf\xf0C\x8c\xcd\xa8\xbb\x19\xfb\x16\xee\xf1\x12{\xe6\x82\xf4\xb4\x8c}o\xe3\xd32\xdc\n\xfb\xc5\xe1w\xf9\x143G\x0c\xf9\xdf\xf4\xbf\xd5\x1b\x8cWQ\x0cQ\x19\xd1\xcc\x00\xc4\x00\x00\x08\xa8\x00\x06\x14X\x06\x01\x00\xc1\x00\x08\x00\x02\x00\x00\x03\xff\xd9\r\n--a5521528e2315dae3f633479ce59b189--\r\n' 
+ </msg>
+<msg time="2026-04-28T15:23:48.242351" level="INFO">POST Response : url=https://petstore.swagger.io/v2/pet/50/uploadImage 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 28 Apr 2026 09:53:47 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"code":200,"type":"unknown","message":"additionalMetadata: googlie's img\nFile uploaded to ./cat_img.jpg, 3649 bytes"} 
+ </msg>
+<msg time="2026-04-28T15:23:48.243027" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>petapi</arg>
+<arg>/pet/50/uploadImage</arg>
+<arg>data=${form_data}</arg>
+<arg>files=${file}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-04-28T15:23:38.266067" elapsed="9.977089"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-04-28T15:23:48.246817" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-04-28T15:23:48.244696" elapsed="0.002362"/>
+</kw>
+<status status="PASS" start="2026-04-28T15:23:38.252399" elapsed="9.995940"/>
+</test>
+<test id="s1-t6" name="Update pet with form date" line="58">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:48.253746" level="INFO">Creating Session using : alias=petapi, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>petapi</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-04-28T15:23:48.253031" elapsed="0.001255"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-04-28T15:23:48.257146" level="INFO">${form_data} = {'name': 'googlie', 'status': 'sold'}</msg>
+<var>${form_data}</var>
+<arg>name=googlie</arg>
+<arg>status=sold</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-04-28T15:23:48.255761" elapsed="0.001514"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:51.618642" level="INFO">POST Request : url=https://petstore.swagger.io/v2/pet/50 
+ path_url=/v2/pet/50 
+ headers={'User-Agent': 'python-requests/2.33.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '24', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=name=googlie&amp;status=sold 
+ </msg>
+<msg time="2026-04-28T15:23:51.618943" level="INFO">POST Response : url=https://petstore.swagger.io/v2/pet/50 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 28 Apr 2026 09:53:50 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"code":200,"type":"unknown","message":"50"} 
+ </msg>
+<msg time="2026-04-28T15:23:51.619387" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>petapi</arg>
+<arg>/pet/50</arg>
+<arg>data=${form_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-04-28T15:23:48.258634" elapsed="3.360878"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-04-28T15:23:51.623189" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-04-28T15:23:51.620977" elapsed="0.002448"/>
+</kw>
+<status status="PASS" start="2026-04-28T15:23:48.251439" elapsed="3.373328"/>
+</test>
+<test id="s1-t7" name="Delete a pet" line="67">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:51.630382" level="INFO">Creating Session using : alias=petapi, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>petapi</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-04-28T15:23:51.629417" elapsed="0.001750"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2026-04-28T15:23:57.237458" level="INFO">DELETE Request : url=https://petstore.swagger.io/v2/pet/50 
+ path_url=/v2/pet/50 
+ headers={'User-Agent': 'python-requests/2.33.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2026-04-28T15:23:57.237743" level="INFO">DELETE Response : url=https://petstore.swagger.io/v2/pet/50 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 28 Apr 2026 09:53:56 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"code":200,"type":"unknown","message":"50"} 
+ </msg>
+<msg time="2026-04-28T15:23:57.238185" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>petapi</arg>
+<arg>/pet/50</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-04-28T15:23:51.632599" elapsed="5.605705"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-04-28T15:23:57.242384" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-04-28T15:23:57.239875" elapsed="0.002760"/>
+</kw>
+<status status="PASS" start="2026-04-28T15:23:51.627802" elapsed="5.616126"/>
+</test>
+<status status="PASS" start="2026-04-28T15:23:07.800110" elapsed="49.447262"/>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Pet" id="s1" pass="7" fail="0" skip="0">Pet</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
